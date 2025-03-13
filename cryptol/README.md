@@ -2,7 +2,7 @@
 This directory contains a Cryptol implementation of the **SABER** post-quantum key encapsulation mechanism (KEM). The goal of this implementation is to model the cryptographic operations of SABER in Cryptol for formal verification and cryptographic analysis.
 
 ## Overview
-[SABER](https://csrc.nist.gov/projects/post-quantum-cryptography) is a lattice-based key encapsulation mechanism that was a finalist in the **NIST Post-Quantum Cryptography Standardization** process. This implementation focuses on modeling its core arithmetic and operations in **Cryptol**, a language designed for formal specification and verification of cryptographic algorithms. The reference C implementation can be found [here](https://github.com/KULeuven-COSIC/SABER). 
+Saber is a lattice-based key encapsulation mechanism that was a finalist in the **NIST Post-Quantum Cryptography Standardization** process. This implementation focuses on modeling its core arithmetic and operations in **Cryptol**, a language designed for formal specification and verification of cryptographic algorithms. The reference C implementation can be found [here](https://github.com/KULeuven-COSIC/SABER). 
 
 ## Repository Structure
 - Core Implementation Files
