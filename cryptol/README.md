@@ -6,10 +6,10 @@ Saber is a lattice-based key encapsulation mechanism that was a finalist in the 
 
 ## Repository Structure
 - Core Implementation Files
-  - `SABER.cry`:
-  - `SABER2.cry`
-  - `SABER3.cry`
-  - `SABER_fullimplementation.cry`
+  - `SABER.cry`:Script developed in Saber debugging process. 
+  - `SABER2.cry`:Script developed in Saber debugging process.
+  - `SABER3.cry:`Script developed in Saber debugging process.
+  - `SABER_fullimplementation.cry`:A complete and consolidated implementation of SABER in Cryptol 
 - Supporting Cryptographic Operations
   - `BS2POLVEC.cry`: Converts a bit string (BS) into a polynomial vector (POLVEC).
   - `BS2POLq.cry`: Converts a bit string into a polynomial with coefficients.
