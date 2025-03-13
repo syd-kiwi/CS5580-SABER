@@ -6,10 +6,10 @@ Saber is a lattice-based key encapsulation mechanism that was a finalist in the 
 
 ## Repository Structure
 - Core Implementation Files
-  - `SABER.cry`
+  - `SABER.cry`:
   - `SABER2.cry`
   - `SABER3.cry`
-  - `SABER_fullimplementation.cry
+  - `SABER_fullimplementation.cry`
 - Supporting Cryptographic Operations
   - `BS2POLVEC.cry`: Converts a bit string (BS) into a polynomial vector (POLVEC).
   - `BS2POLq.cry`: Converts a bit string into a polynomial with coefficients.
@@ -23,7 +23,15 @@ Saber is a lattice-based key encapsulation mechanism that was a finalist in the 
   -  `polyadd.cry`: Implements polynomial addition.
 - Other Componets
   - `key_gen.cry`: Implements the key generation process for SABER.
-  - `parameters.cry`: Defines constants and parameters for SABER. 
+  - `parameters.cry`: Defines constants and parameters for SABER.
+ 
+## Prerequisites
+To run the Cryptol code in this directory, you need:
+- [Cryptol](https://cryptol.net/) installed on your system.
+  - You can also install via Docker
+    - docker pull ghcr.io/galoisinc/cryptol:latest
+    - docker run -it ghcr.io/galoisinc/cryptol:latest
+
 
 
 
