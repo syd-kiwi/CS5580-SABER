@@ -1,0 +1,2 @@
+matrixVectorMul : [SABER_K][SABER_K]PolyQ -> [SABER_K]PolyQ -> [SABER_K]PolyQ
+matrixVectorMul a v = [ foldl polyAdd zero [polyMul a_ij vj | a_i <- a | vj <- v] | a <- a ]

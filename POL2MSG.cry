@@ -1,0 +1,2 @@
+POL2MSG : [SABER_N][16] -> [SABER_KEYBYTES][8]
+POL2MSG poly = [ pack [ (poly @ (8*j + i)) && 0x1 | i <- [0 .. 7] ] | j <- [0 .. SABER_KEYBYTES - 1] ]

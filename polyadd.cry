@@ -1,0 +1,9 @@
+module SABER where
+
+// Parameters from SABER specification (confirm these exactly):
+type SABER_N  = 256
+type SABER_Q  = 8192
+type PolyQ = [SABER_N][16] // coefficients mod Q
+
+polyAdd : PolyQ -> PolyQ -> PolyQ
+polyAdd p1 p2 = [ (x + y) % SABER_Q | x <- p1 | y <- p2 ]

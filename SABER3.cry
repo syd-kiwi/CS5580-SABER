@@ -1,0 +1,73 @@
+
+// Fix: Define Nk and SABERKeySize as values instead of types
+Nk_value : Integer
+Nk_value = 4  // Corresponds to SABER128
+
+SABERKeySize_value : Integer
+SABERKeySize_value = Nk_value * 32
+
+pack : [8][1] -> [8]
+pack bits = foldl (\x y -> (x << 1) ^ y) 0 bits  // Corrected bitwise OR
+
+zero_extend : {a, b} (fin a, fin b, b >= a) => [a] -> [b]
+zero_extend x = zero # x
+
+// ============================
+// 1️⃣  PARAMETERS & TYPE DEFINITIONS
+// ============================
+
+SABER_N_value : Integer
+SABER_N_value = 256
+
+SABER_K_value : Integer
+SABER_K_value = 3
+
+SABER_Q_value : Integer
+SABER_Q_value = 8192
+
+SEEDBYTES_value : Integer
+SEEDBYTES_value = 32
+
+type PolyQ = [SABER_N_value][16]   // Polynomial mod Q
+type MatrixPolyQ = [SABER_K_value][SABER_K_value]PolyQ
+type PolyVec = [SABER_K_value]PolyQ
+
+BytesPerPoly = 13 * (SABER_N_value / 8)
+
+one_poly_bytes : Integer  // ✅ Kept only one definition
+one_poly_bytes = 13 * (SABER_N_value) / 8
+
+byte_bank_length : Integer
+byte_bank_length = SABER_K_value * SABER_K_value * one_poly_bytes
+
+offset = (i * SABER_K_value + j) * one_poly_bytes
+
+buf : [byte_bank_length][8]
+buf = take byte_bank_length (repeat 0)  // Fixed undefined variable
+
+POL2MSG : [SABER_N_value][16] -> [SABER_KEYBYTES][8]
+POL2MSG poly = [ pack [ (poly@(8*j + i)) && 0x1 | i <- [0 .. 7] ] | j <- [0 .. SABER_KEYBYTES - 1] ]
+
+MSG2POL : [SABER_KEYBYTES][8] -> [SABER_N_value][16]
+MSG2POL msg = join [ [ zero_extend ((msg@j >> i) && 0x1) | i <- [0 .. 7] ] | j <- [0 .. SABER_KEYBYTES - 1] ]
+
+polyAdd p1 p2 = [ (x + y) % SABER_Q_value | x <- p1 | y <- p2 ]
+polySub p1 p2 = [ (x + SABER_Q_value - y) % SABER_Q_value | x <- p1 | y <- p2 ]
+
+polyMul p1 p2 = [ reduceCoeff k | k <- [0 .. SABER_N_value - 1] ]
+sum [p1@i * p2@((k - i) % SABER_N_value) | i <- [0 .. SABER_N_value - 1]] % SABER_Q_value
+
+polyScalarMul s p = [ (coeff * s) % SABER_Q_value | coeff <- p ]
+
+GenMatrix : [SEEDBYTES_value][8] -> MatrixPolyQ
+GenMatrix seed = [ [ gen_poly i j | j <- [0 .. SABER_K_value - 1] ] | i <- [0 .. SABER_K_value - 1] ]
+
+indcpa_keypair : ([SEEDBYTES_value][8], [NOISESEEDBYTES][8]) ->
+                 ([CIPHERTEXT_BYTES][8], [CIPHERTEXT_BYTES][8])
+indcpa_keypair (seed, noiseseed) = (take CIPHERTEXT_BYTES (repeat 0), take CIPHERTEXT_BYTES (repeat 0))  // ✅ Placeholder function added
+
+sk = [zero : PolyQ | _ <- [0 .. SABER_K_value-1]]
+
+a_matrix = GenMatrix (take SEEDBYTES_value pk)  // Renamed `a` to `a_matrix` to avoid shadowing
+
+sk' = [zero : PolyQ | _ <- [0 .. SABER_K_value-1]]

@@ -1,0 +1,12 @@
+module SABER where
+
+// Example parameters based on SABER specs
+type SABER_N = 256
+type SABER_Q = 8192 // example values, confirm these based on your parameter set
+type SABER_K = 3
+type SABER_EP = 10
+type SABER_ET = 4
+type SABER_EQ = 13
+
+// Polynomial definition
+type PolyQ = [SABER_N][16] // coefficients mod Q represented by 16 bits

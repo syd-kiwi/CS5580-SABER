@@ -1,0 +1,13 @@
+GenMatrix : [SEEDBYTES][8] -> MatrixPolyQ
+GenMatrix seed = [ [ gen_poly i j | j <- [0 .. SABER_K - 1] ] | i <- [0 .. SABER_K - 1] ]
+  where
+    one_poly_bytes = 13 * SABER_N / 8
+    byte_bank_length = SABER_K * SABER_K * one_poly_bytes
+
+    buf : [byte_bank_length][8]
+    buf = SHAKE128 seed
+
+    gen_poly : [32] -> [32] -> PolyQ
+    gen_poly i j =
+      let offset = (i*SABER_K + j)*one_poly_bytes
+      in BS2POLq (take`{one_poly_bytes} (drop`{offset} buf))

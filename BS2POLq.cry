@@ -1,0 +1,14 @@
+BS2POLq : [13 * SABER_N / 8][8] -> [SABER_N][16]
+BS2POLq bytes = [ unpack_coeff j | j <- [0 .. SABER_N/8 - 1] ] # join
+  where
+    unpack_coeff j =
+      [  (zero_extend bytes@(13*j + 0)) | ((take`{5} (bytes@(13*j + 1))) << 8)
+      ,  ((drop`{5}(bytes@(13*j + 1))) | (bytes@(13*j + 2) << 3) | ((take`{2}(bytes@(13*j + 3))) << 11))
+      ,  ((drop`{2}(bytes@(13*j + 3))) | ((take`{7}(bytes@(13*j + 4))) << 6))
+      ,  ((drop`{7}(bytes@(13*j + 4))) | (bytes@(13*j + 5) << 1) | ((take`{4}(bytes@(13*j + 6))) << 9))
+      ,  ((drop`{4}(bytes@(13*j + 6))) | (bytes@(13*j + 7) << 4) | ((take`{1}(bytes@(13*j + 8))) << 12))
+      ,  ((drop`{1}(bytes@(13*j + 8))) | ((take`{6}(bytes@(13*j + 9))) << 7))
+      ,  ((drop`{6}(bytes@(13*j + 9))) | (bytes@(13*j + 10) << 2) | ((take`{3}(bytes@(13*j + 11))) << 10))
+      ,  ((drop`{3}(bytes@(13*j + 11))) | (bytes@(13*j + 12) << 5))
+      ]
+
