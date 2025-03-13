@@ -11,7 +11,7 @@ Additionally, the repository contains:
 ## Repository Structure
 - `cryptol` - Cryptol implementation of SABER KEM 
 - `KAT` - Known Answer Test files for SABER and LightSaber 
-- `ghidra` - Ghidra project files f
+- `ghidra` - Ghidra project files
 - `python` - Python scripts for aiding SABER algorithm analysis
 
 ## Requirements
@@ -23,6 +23,6 @@ To work with this repository, you may need the following:
 - **Git** – for cloning and managing the repository
 
 ## Getting Started
-1. Clone the repository:
+Clone the repository:
    ```sh
    git clone https://github.com/your-repo/cs5580-saber.git
