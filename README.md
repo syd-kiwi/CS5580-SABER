@@ -11,20 +11,18 @@ Additionally, the repository contains:
 - **Ghidra project files**, which contain reverse-engineered analysis of the SABER implementation.
 
 ## Repository Structure
-- /cryptol - Cryptol implementation of SABER KEM 
-- /KAT - Known Answer Test files for SABER and LightSaber 
-- /ghidra - Ghidra project files f
-- /python - Python scripts for aiding SABER algorithm analysis
+- `cryptol` - Cryptol implementation of SABER KEM 
+- `KAT` - Known Answer Test files for SABER and LightSaber 
+- `ghidra` - Ghidra project files f
+- `python` - Python scripts for aiding SABER algorithm analysis
 
 ## Requirements
 
 To work with this repository, you may need the following:
-
 - **Cryptol** – for running the Cryptol implementation
 - **Ghidra** – for opening and analyzing reverse-engineered files
 - **Python 3** – for executing supplementary scripts
-- **C Compiler (GCC/Clang)** – if testing the decompiled C files
-- **Make** (optional) – for compiling any C-related implementations
+- **Make** – for compiling any C-related implementations
 - **Git** – for cloning and managing the repository
 
 ## Getting Started
