@@ -1,18 +1,28 @@
-# Saber Cryptographic Implementation
+# CS 5580 - Cryptographic Engineering SABER Implementation
 
-Source code repo containing CS 5580 - Group 5's Spring 2025 semester project source code
+## Overview
+This repository contains the **Cryptol implementation** of the **SABER** key encapsulation mechanism (KEM) in the `cryptol` folder.**Known Answer Test (KAT) files** for both the **SABER** and **LightSaber** implementations in the `KAT` folders.
 
-This repository contains a clean and efficient C implementation of the Saber key-encapsulation mechanism (KEM), a post-quantum cryptographic algorithm candidate in the NIST PQC standardization project. Saber is based on the Module Learning With Rounding (Module-LWR) problem.
+Additionally, the repository contains:
+-  Decompiled versions of the three output files generated from the **C implementation** of the SABER algorithm.
+- **Ghidra project files**, which contain reverse-engineered analysis of the SABER implementation.
+- Several **Python scripts** created along the way to better understand the overall SABER algorithm.
 
-Features
+## Repository Structure
+- `cryptol` - Cryptol implementation of SABER KEM 
+- `KAT` - Known Answer Test files for SABER and LightSaber 
+- `ghidra` - Ghidra project files
+- `python` - Python scripts for aiding SABER algorithm analysis
 
-* Implementation of key generation, encapsulation, and decapsulation procedures.
-* Includes KAT test cases to verify correct functionality.
+## Requirements
+To work with this repository, you may need the following:
+- **Cryptol** – for running the Cryptol implementation
+- **Ghidra** – for opening and analyzing reverse-engineered files
+- **Python 3** – for executing supplementary scripts
+- **Make** – for compiling any C-related implementations
+- **Git** – for cloning and managing the repository
 
-Building
-
-Clone the repository and build using make:
-
-git clone https://github.com/r-pudasaini/saber.git
-cd saber
-make
+## Getting Started
+Clone the repository:
+   ```sh
+   git clone https://github.com/your-repo/cs5580-saber.git
