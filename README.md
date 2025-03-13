@@ -11,10 +11,10 @@ Additionally, the repository contains:
 - **Ghidra project files**, which contain reverse-engineered analysis of the SABER implementation.
 
 ## Repository Structure
-/cryptol - Cryptol implementation of SABER KEM 
-/KAT - Known Answer Test files for SABER and LightSaber 
-/ghidra - Ghidra project files f
-/python - Python scripts for aiding SABER algorithm analysis
+- /cryptol - Cryptol implementation of SABER KEM 
+- /KAT - Known Answer Test files for SABER and LightSaber 
+- /ghidra - Ghidra project files f
+- /python - Python scripts for aiding SABER algorithm analysis
 
 ## Requirements
 
