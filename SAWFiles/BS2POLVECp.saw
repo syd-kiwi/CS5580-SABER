@@ -1,0 +1,10 @@
+
+let cryptol_mod = cryptol_load "SABER.cry";
+let llvm_mod = llvm_load_module "SABER.o";
+
+let bs2polvecp_spec = {{
+  pre : {{ bytes }} -> true,
+  post : {{ bytes, b }} -> b == BS2POLVECp_Cryptol(bytes)
+}};
+
+llvm_verify llvm_mod "BS2POLVECp" bs2polvecp_spec;

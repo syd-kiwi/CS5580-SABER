@@ -1,0 +1,10 @@
+
+let cryptol_mod = cryptol_load "SABER.cry";
+let llvm_mod = llvm_load_module "SABER.o";
+
+let genmatrix_spec = {{
+  pre : {{ seed }} -> true,
+  post : {{ seed, A }} -> A == GenMatrix_Cryptol(seed)
+}};
+
+llvm_verify llvm_mod "GenMatrix" genmatrix_spec;

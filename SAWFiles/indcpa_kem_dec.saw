@@ -1,0 +1,10 @@
+
+let cryptol_mod = cryptol_load "SABER.cry";
+let llvm_mod = llvm_load_module "SABER.o";
+
+let dec_spec = {{
+  pre : {{ ct, sk }} -> true,
+  post : {{ ct, sk, m }} -> m == indcpa_kem_dec_Cryptol(ct, sk)
+}};
+
+llvm_verify llvm_mod "indcpa_kem_dec" dec_spec;

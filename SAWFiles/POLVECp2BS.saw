@@ -1,0 +1,10 @@
+
+let cryptol_mod = cryptol_load "SABER.cry";
+let llvm_mod = llvm_load_module "SABER.o";
+
+let polyvecp2bs_spec = {{
+  pre : {{ b }} -> true,
+  post : {{ b, bytes }} -> bytes == POLVECp2BS_Cryptol(b)
+}};
+
+llvm_verify llvm_mod "POLVECp2BS" polyvecp2bs_spec;
