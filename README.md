@@ -16,7 +16,7 @@ Additionally, the repository contains:
 - `KATfiles` - Known Answer Test files for SABER and LightSaber
 - `SABERPython` - Python scripts for analyzing or simulating the SABER algorithm
 - `SABER_CCS` - SABER C code setup for CCS (Code Composer Studio) with TI boards
-- `SAWFiles` - Formal verification artifacts using SAW and Cryptol
+- `SAW_Cryptol_Verification` - Formal verification artifacts using SAW and Cryptol
 - `cryptol` - Cryptol implementation of SABER KEM
 - `ghidra` - Ghidra project files for reverse engineering the SABER C binaries
 
