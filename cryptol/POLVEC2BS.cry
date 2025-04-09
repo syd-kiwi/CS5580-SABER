@@ -1,6 +1,0 @@
-POLVEC2BS : [SABER_K][SABER_N][16] -> [SABER_POLYVECCOMPRESSEDBYTES][8]
-POLVEC2BS polyvec = join [ POL2BS p | p <- polyvec ]
-
-// individual polynomial compression
-POL2BS : [SABER_N][16] -> [SABER_POLYCOMPRESSEDBYTES][8]
-POL2BS p = undefined // Implement similar to BS2POLq, using bit-packing rules

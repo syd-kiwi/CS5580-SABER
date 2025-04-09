@@ -1,0 +1,11 @@
+
+module BS2POLmsg where
+
+type Word16 = [16]
+type Byte = [8]
+N = 256
+type ByteArray = [N]Byte
+type MsgPoly = [N]Word16
+
+BS2POLmsg : ByteArray -> MsgPoly
+BS2POLmsg bytes = [ zero # (bytes @ i) | i <- [0 .. N-1] ]

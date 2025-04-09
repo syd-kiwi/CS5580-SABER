@@ -1,0 +1,10 @@
+
+let cryptol_mod = cryptol_load "POLmsg2BS.cry";
+let m = llvm_load_module "POLmsg2BS.bc";
+
+let polmsg2bs_spec = {
+  pre : { msg } -> true,
+  post : { msg, bytes } -> bytes == POLmsg2BS(msg)
+};
+
+llvm_verify m "POLmsg2BS" polmsg2bs_spec;

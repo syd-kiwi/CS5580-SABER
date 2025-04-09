@@ -1,2 +1,0 @@
-MSG2POL : [SABER_KEYBYTES][8] -> [SABER_N][16]
-MSG2POL msg = join [ [ zero_extend ((msg@j) >> i) && 0x1 | i <- [0 .. 7] ] | j <- [0 .. SABER_KEYBYTES - 1] ]

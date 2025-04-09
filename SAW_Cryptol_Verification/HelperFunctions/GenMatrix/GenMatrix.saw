@@ -1,0 +1,10 @@
+
+let cryptol_mod = cryptol_load "GenMatrix.cry";
+let m = llvm_load_module "GenMatrix.bc";
+
+let genMatrix_spec = {
+  pre : { seed } -> true,
+  post : { seed, A } -> A == GenMatrix(seed)
+};
+
+llvm_verify m "GenMatrix" genMatrix_spec;

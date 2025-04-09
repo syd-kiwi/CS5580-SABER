@@ -1,0 +1,10 @@
+
+let cryptol_mod = cryptol_load "BS2POLVECp.cry";
+let m = llvm_load_module "BS2POLVECp.bc";
+
+let bs2polvecp_spec = {
+  pre : { bytes } -> true,
+  post : { bytes, vec } -> vec == BS2POLVECp(bytes)
+};
+
+llvm_verify m "BS2POLVECp" bs2polvecp_spec;

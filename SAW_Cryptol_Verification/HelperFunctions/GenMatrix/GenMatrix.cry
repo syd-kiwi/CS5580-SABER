@@ -1,0 +1,11 @@
+
+module GenMatrix where
+
+L = 3
+N = 256
+type Byte = [8]
+type Word16 = [16]
+type FlatMatrix = [L * L * N]Word16
+
+GenMatrix : [32]Byte -> FlatMatrix
+GenMatrix seed = [ toInteger (seed @ (i % 32)) + i | i <- [0 .. L * L * N - 1] ]

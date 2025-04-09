@@ -1,2 +1,0 @@
-polyMul : PolyQ -> PolyQ -> PolyQ
-polyMul a b = [sum [ a@i * b@(j-i) | i <- [0 .. j] ] % SABER_Q | j <- [0 .. SABER_N-1]]
