@@ -36,6 +36,9 @@
 #include "utils/uartstdio.h"
 
 #include "fips202.h"
+#include "api.h"
+#include "SABER_indcpa.h"
+#include <stdlib.h>
 
 //*****************************************************************************
 //
@@ -156,7 +159,7 @@ main(void)
     UARTprintf("Hello, world!\n");
 
     /* String Hex to unsigned char array */
-    char seedString[65] = "061550234D158C5EC95595FE04EF7A25767F2E24CC2BC479D09D86DC9ABCFDE7";
+    /*char seedString[65] = "061550234D158C5EC95595FE04EF7A25767F2E24CC2BC479D09D86DC9ABCFDE7";
 
     unsigned char seed[32];
 
@@ -180,14 +183,47 @@ main(void)
     for (i = 0; i < 32; i++) {
         UARTprintf("%02X", seed[i]);
     }
-    UARTprintf("\n");
+    UARTprintf("\n");*/
 
     /* End String Hex to unsigned char array */
 
     /* START SABER */
-    
-    
-    
+
+    uint8_t *pk = (uint8_t *)malloc(CRYPTO_PUBLICKEYBYTES * sizeof(uint8_t));
+    uint8_t *sk = (uint8_t *)malloc(CRYPTO_SECRETKEYBYTES * sizeof(uint8_t));
+
+    if (pk == NULL || sk == NULL) {
+
+        if (pk == NULL)
+            UARTprintf("pk is NULL\n");
+
+        if (sk == NULL)
+            UARTprintf("sk is NULL\n");
+
+        UARTprintf("Malloc Failed.\n");
+    }
+    else {
+        
+        indcpa_kem_keypair(pk, sk);
+
+        int32_t i;
+        for (i = 0; i < CRYPTO_PUBLICKEYBYTES; i++) {
+            UARTprintf("%02X", pk[i]);
+        }
+        UARTprintf("\n");
+
+        for (i = 0; i < CRYPTO_SECRETKEYBYTES; i++) {
+            UARTprintf("%02X", sk[i]);
+        }
+        UARTprintf("\n");
+
+        free(pk);
+        pk = NULL;
+
+        free(sk);
+        sk = NULL;
+        
+    }
     
     /* END SABER */
 

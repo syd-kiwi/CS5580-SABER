@@ -12,6 +12,7 @@ SABER_indcpa.obj: C:/Users/nicho/Downloads/ti-cgt-arm_18.12.2.LTS/include/sys/_t
 SABER_indcpa.obj: C:/Users/nicho/Downloads/ti-cgt-arm_18.12.2.LTS/include/machine/_types.h
 SABER_indcpa.obj: C:/Users/nicho/Downloads/ti-cgt-arm_18.12.2.LTS/include/machine/_stdint.h
 SABER_indcpa.obj: C:/Users/nicho/Downloads/ti-cgt-arm_18.12.2.LTS/include/sys/_stdint.h
+SABER_indcpa.obj: C:/Users/nicho/Downloads/ti-cgt-arm_18.12.2.LTS/include/stdlib.h
 SABER_indcpa.obj: ../SABER_indcpa.h
 SABER_indcpa.obj: ../poly.h
 SABER_indcpa.obj: ../SABER_params.h
@@ -48,6 +49,8 @@ C:/Users/nicho/Downloads/ti-cgt-arm_18.12.2.LTS/include/machine/_types.h:
 C:/Users/nicho/Downloads/ti-cgt-arm_18.12.2.LTS/include/machine/_stdint.h:
 
 C:/Users/nicho/Downloads/ti-cgt-arm_18.12.2.LTS/include/sys/_stdint.h:
+
+C:/Users/nicho/Downloads/ti-cgt-arm_18.12.2.LTS/include/stdlib.h:
 
 ../SABER_indcpa.h:
 

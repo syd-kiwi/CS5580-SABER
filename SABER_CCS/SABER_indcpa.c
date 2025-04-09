@@ -1,5 +1,6 @@
 #include <string.h>
 #include <stdint.h>
+#include <stdlib.h> // random gen
 #include "SABER_indcpa.h"
 #include "poly.h"
 #include "pack_unpack.h"
@@ -66,9 +67,16 @@ void indcpa_kem_keypair(unsigned char *pk, unsigned char *sk)
 
   uint16_t res[SABER_K][SABER_N];
 
+  srand(0);
   // randombytes(seed, SABER_SEEDBYTES); HARDCODE THIS VALUE --------------------------------------------------------------------------------
+  for (i = 0; i < SABER_SEEDBYTES; i++) {
+	seed[i] = rand() % 256; // 0 - 255
+  }
   shake128(seed, SABER_SEEDBYTES, seed, SABER_SEEDBYTES); // for not revealing system RNG state
   // randombytes(noiseseed, SABER_COINBYTES); HARDCODE THIS VALUE ---------------------------------------------------------------------------
+  for (i = 0; i < SABER_COINBYTES; i++) {
+	noiseseed[i] = rand() % 256; // 0 - 255
+  }
 
   GenMatrix(a, seed);	//sample matrix A
 
