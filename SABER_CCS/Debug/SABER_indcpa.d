@@ -25,6 +25,8 @@ SABER_indcpa.obj: ../poly_mul.h
 SABER_indcpa.obj: ../SABER_params.h
 SABER_indcpa.obj: ../fips202.h
 SABER_indcpa.obj: ../SABER_params.h
+SABER_indcpa.obj: ../matrixVectorMultiplication.h
+SABER_indcpa.obj: ../SABER_params.h
 
 ../SABER_indcpa.c:
 
@@ -73,6 +75,10 @@ C:/Users/nicho/Downloads/ti-cgt-arm_18.12.2.LTS/include/stdarg.h:
 ../SABER_params.h:
 
 ../fips202.h:
+
+../SABER_params.h:
+
+../matrixVectorMultiplication.h:
 
 ../SABER_params.h:
 

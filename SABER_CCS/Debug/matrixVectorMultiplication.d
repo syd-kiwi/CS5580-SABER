@@ -18,6 +18,8 @@ matrixVectorMultiplication.obj: C:/Users/nicho/Downloads/ti-cgt-arm_18.12.2.LTS/
 matrixVectorMultiplication.obj: C:/Users/nicho/Downloads/ti-cgt-arm_18.12.2.LTS/include/sys/_stdint.h
 matrixVectorMultiplication.obj: ../SABER_params.h
 matrixVectorMultiplication.obj: ../api.h
+matrixVectorMultiplication.obj: ../matrixVectorMultiplication.h
+matrixVectorMultiplication.obj: ../SABER_params.h
 
 ../matrixVectorMultiplication.c:
 
@@ -54,4 +56,8 @@ C:/Users/nicho/Downloads/ti-cgt-arm_18.12.2.LTS/include/sys/_stdint.h:
 ../SABER_params.h:
 
 ../api.h:
+
+../matrixVectorMultiplication.h:
+
+../SABER_params.h:
 

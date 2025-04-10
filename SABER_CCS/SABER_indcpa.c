@@ -8,6 +8,7 @@
 //#include "rng.h"
 #include "fips202.h"
 #include "SABER_params.h"
+#include "matrixVectorMultiplication.h"
 
 
 
