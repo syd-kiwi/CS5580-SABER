@@ -1,10 +1,10 @@
-
-let cryptol_mod = cryptol_load "GenMatrix.cry";
-let m = llvm_load_module "GenMatrix.bc";
-
-let genMatrix_spec = {
-  pre : { seed } -> true,
-  post : { seed, A } -> A == GenMatrix(seed)
+let genMatrix_setup = do {
+    seed <- llvm_fresh_var "seed" (llvm_array 32 (llvm_int 8)); // example: [32 x i8] buffer
+    llvm_execute_func [llvm_term seed];
+    let expected = {{ GenMatrix(seed) }};
+    llvm_return (llvm_term expected);
 };
 
-llvm_verify m "GenMatrix" genMatrix_spec;
+
+m <- llvm_load_module "GenMatrix.bc";
+genMatrix_ms <- llvm_verify m "GenMatrix" [] false genMatrix_setup z3;
