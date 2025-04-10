@@ -367,8 +367,5 @@ void InnerProd(uint16_t pkcl[SABER_K][SABER_N],uint16_t skpv[SABER_K][SABER_N],u
 			}
 	}
 
-
-
-
 }
 
