@@ -42,9 +42,9 @@ void GenMatrix(polyvec *a, const unsigned char *seed)
     for(j=0;j<SABER_K;j++)
     {
 	BS2POL(buf+(i*SABER_K+j)*one_vector,temp_ar);
-	for(k=0;k<SABER_N;k++){
-		a[i].vec[j].coeffs[k] = (temp_ar[k])& mod ;
-	}
+		for(k=0;k<SABER_N;k++){
+			a[i].vec[j].coeffs[k] = (temp_ar[k])& mod;
+		}
     }
   }
 
@@ -67,7 +67,6 @@ void indcpa_kem_keypair(unsigned char *pk, unsigned char *sk)
 
   uint16_t res[SABER_K][SABER_N];
 
-  srand(0);
   // randombytes(seed, SABER_SEEDBYTES); HARDCODE THIS VALUE --------------------------------------------------------------------------------
   for (i = 0; i < SABER_SEEDBYTES; i++) {
 	seed[i] = rand() % 256; // 0 - 255

@@ -20,6 +20,7 @@ kem.obj: ../SABER_indcpa.h
 kem.obj: ../kem.h
 kem.obj: ../verify.h
 kem.obj: ../fips202.h
+kem.obj: C:/Users/nicho/Downloads/ti-cgt-arm_18.12.2.LTS/include/stdlib.h
 
 ../kem.c:
 
@@ -60,4 +61,6 @@ C:/Users/nicho/Downloads/ti-cgt-arm_18.12.2.LTS/include/stdarg.h:
 ../verify.h:
 
 ../fips202.h:
+
+C:/Users/nicho/Downloads/ti-cgt-arm_18.12.2.LTS/include/stdlib.h:
 
