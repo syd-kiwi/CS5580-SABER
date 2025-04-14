@@ -1,4 +1,4 @@
-#include "../cbd.h"
+#include "../../source_code/cbd.h"
 
 void GenSecret(uint16_t r[SABER_K][SABER_N],const unsigned char *seed){
 
