@@ -1,13 +1,18 @@
+#include "../cbd.h"
 
-#include <stdint.h>
+void GenSecret(uint16_t r[SABER_K][SABER_N],const unsigned char *seed){
 
-#define L 3
-#define N 256
 
-void GenSecret(uint16_t s[L][N], const uint8_t seed[32]) {
-    for (int i = 0; i < L; i++) {
-        for (int j = 0; j < N; j++) {
-            s[i][j] = (uint16_t)(seed[(i * N + j) % 32]);
-        }
+    uint32_t i;
+
+    int32_t buf_size= SABER_MU*SABER_N*SABER_K/8;
+
+    uint8_t buf[buf_size];
+
+    shake128(buf, buf_size, seed,SABER_NOISESEEDBYTES);
+
+    for(i=0;i<SABER_K;i++)
+    {
+        cbd(r[i],buf+i*SABER_MU*SABER_N/8);
     }
 }
