@@ -1,5 +1,3 @@
-#include "../pack_unpack.h"
-
 void BS2POLVECp(const unsigned char *bytes, uint16_t data[SABER_K][SABER_N]){
 	
 	uint32_t i,j;
