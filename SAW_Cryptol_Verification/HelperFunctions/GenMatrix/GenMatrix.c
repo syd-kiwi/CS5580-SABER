@@ -1,12 +1,26 @@
+#include "../poly.h"
 
-#include <stdint.h>
+void GenMatrix(polyvec *a, const unsigned char *seed) 
+{
+  unsigned int one_vector=13*SABER_N/8;
+  unsigned int byte_bank_length=SABER_K*SABER_K*one_vector;
+  unsigned char buf[byte_bank_length];
 
-#define L 3
-#define N 256
-#define MATRIX_SIZE (L * L * N)
+  uint16_t temp_ar[SABER_N];
 
-void GenMatrix(uint16_t A[MATRIX_SIZE], const uint8_t seed[32]) {
-    for (int i = 0; i < MATRIX_SIZE; i++) {
-        A[i] = (uint16_t)(seed[i % 32] + i);
+  int i,j,k;
+  uint16_t mod = (SABER_Q-1);
+
+  shake128(buf,byte_bank_length,seed,SABER_SEEDBYTES);
+  
+  for(i=0;i<SABER_K;i++)
+  {
+    for(j=0;j<SABER_K;j++)
+    {
+	BS2POL(buf+(i*SABER_K+j)*one_vector,temp_ar);
+		for(k=0;k<SABER_N;k++){
+			a[i].vec[j].coeffs[k] = (temp_ar[k])& mod;
+		}
     }
+  }
 }
