@@ -57,5 +57,5 @@ def count_all_c_file_loc(directory):
     return result, total_loc
 
 # Example usage
-directory = '/home/sydney/Documents/cryptographicengineering/CS5580-SABER'
+directory = '/home/sydney/Documents/cryptographicengineering/CS5580-SABER/SAW_Cryptol_Verification/HelperFunctions'
 count_all_c_file_loc(directory)
