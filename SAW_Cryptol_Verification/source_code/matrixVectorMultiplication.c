@@ -57,10 +57,8 @@ void MatrixVectorMultiply(polyvec *a, uint16_t skpv[SABER_K][SABER_N], uint16_t 
 					res[i][k]=res[i][k]&mod; //reduction
 					acc[k]=0; //clear the accumulator
 				}
-			
 			}
 		}
 	}
-
 }
 

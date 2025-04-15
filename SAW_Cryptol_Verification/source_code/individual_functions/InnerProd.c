@@ -7,7 +7,7 @@ void InnerProd(uint16_t pkcl[SABER_K][SABER_N],uint16_t skpv[SABER_K][SABER_N],u
 
 	// vector-vector scalar multiplication with mod p
 	for(j=0;j<SABER_K;j++){
-		pol_mul(pkcl[j], skpv[j], acc , SABER_P, SABER_N);
+		poly_mult(pkcl[j], skpv[j], acc , SABER_P, SABER_N);
 
 			for(k=0;k<SABER_N;k++){
 				res[k]=res[k]+acc[k];

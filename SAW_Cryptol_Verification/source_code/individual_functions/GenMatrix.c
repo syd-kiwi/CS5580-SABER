@@ -1,4 +1,6 @@
 #include "../../source_code/poly.h"
+#include "../../source_code/fips202.h"
+#include "../../source_code/pack_unpack.h"
 
 void GenMatrix(polyvec *a, const unsigned char *seed) 
 {

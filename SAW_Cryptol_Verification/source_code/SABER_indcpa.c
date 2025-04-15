@@ -352,7 +352,6 @@ void POL2MSG(uint16_t *message_dec_unpacked, unsigned char *message_dec){
 
 void InnerProd(uint16_t pkcl[SABER_K][SABER_N],uint16_t skpv[SABER_K][SABER_N],uint16_t mod,uint16_t res[SABER_N]){
 
-
 	uint32_t j,k;
 	uint16_t acc[SABER_N]; 
 
@@ -366,6 +365,5 @@ void InnerProd(uint16_t pkcl[SABER_K][SABER_N],uint16_t skpv[SABER_K][SABER_N],u
 				acc[k]=0; //clear the accumulator
 			}
 	}
-
 }
 
