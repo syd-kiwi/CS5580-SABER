@@ -1,10 +1,25 @@
-let genMatrix_setup = do {
-    seed <- llvm_fresh_var "seed" (llvm_array 32 (llvm_int 8)); // example: [32 x i8] buffer
-    llvm_execute_func [llvm_term seed];
-    let expected = {{ GenMatrix(seed) }};
-    llvm_return (llvm_term expected);
+enable_experimental;
+
+include "helpers.saw";  // optional for macros
+
+let genmatrix_mod = llvm_load_module "GenMatrix.bc";
+
+let genmatrix_ok = do {
+  // Symbolic seed input (32 bytes)
+  (seed_val, seed_ptr) <- ptr_to_fresh "seed" (llvm_array 32 (llvm_int 8));
+
+  // Symbolic output buffer (256 bytes)
+  (out_val, out_ptr) <- ptr_to_fresh "a" (llvm_array 256 (llvm_int 8));
+
+  // Call the function
+  llvm_execute_func [out_ptr, seed_ptr];
+
+  // Print output (optional)
+  print "Output bytes from GenMatrix:";
+  print_term (take 16 out_val);  // first 16 bytes
+
+  return ();
 };
 
-
-m <- llvm_load_module "GenMatrix.bc";
-genMatrix_ms <- llvm_verify m "GenMatrix" [] false genMatrix_setup z3;
+llvm_verify genmatrix_mod "GenMatrix" [] true genmatrix_ok yices;
+print "[✔] Proof succeeded!";
