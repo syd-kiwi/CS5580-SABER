@@ -1,11 +1,20 @@
-
 module BS2POLmsg where
 
-type Word16 = [16]
 type Byte = [8]
-N = 256
-type ByteArray = [N]Byte
-type MsgPoly = [N]Word16
+type Coeff = [13]  // SABER uses 13-bit coefficients
+type Poly = [256]Coeff
 
-BS2POLmsg : ByteArray -> MsgPoly
-BS2POLmsg bytes = [ zero # (bytes @ i) | i <- [0 .. N-1] ]
+// Input: 32 bytes (256 bits)
+// Output: polynomial with 256 coefficients: 0 or 2^12 = 4096
+BS2POLmsg : [32]Byte -> Poly
+BS2POLmsg bytes = [ bit_to_coeff (get_bit i) | i <- [0 .. 255] ]
+  where
+    fullBits : [256]Bit
+    fullBits = join bytes
+
+    get_bit : Integer -> Bit
+    get_bit i = fullBits @ i
+
+    bit_to_coeff : Bit -> Coeff
+    bit_to_coeff b = if b == True then 0x1000 else 0
+
