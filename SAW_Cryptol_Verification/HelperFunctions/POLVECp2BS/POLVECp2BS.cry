@@ -1,12 +1,24 @@
+module POLVECp2BS where
 
-module POLVECq2BS where
+type Coeff = [11]
+type Byte  = [8]
 
-type Word16 = [16]
-type Byte = [8]
-L = 3
-N = 256
-type PolyVec = [L][N]Word16
-type ByteArray = [L * N]Byte
+type SABER_K = 3
+type SABER_N = 256
 
-POLVECq2BS : PolyVec -> ByteArray
-POLVECq2BS vec = [ drop`8 (vec @ i @ j) | i <- [0 .. L - 1], j <- [0 .. N - 1] ]
+// Input: 3 x 256 polynomial vector with 11-bit coefficients
+// Output: packed 1056-byte stream
+POLVECp2BS : [SABER_K][SABER_N]Coeff -> [1056]Byte
+POLVECp2BS pols = dropBytes (join packedBits)
+  where
+    allCoeffs : [SABER_K * SABER_N]Coeff
+    allCoeffs = join pols
+
+    allBits : [SABER_K * SABER_N * 11]Bit
+    allBits = join [zero # c | c <- allCoeffs]  // pad each 11-bit coeff to 16 bits first, then drop
+
+    packedBits : [1056][8]
+    packedBits = groupBy`{8} allBits
+
+    dropBytes : [1056][8] -> [1056][8]
+    dropBytes xs = xs  // identity — left in case you want to post-process

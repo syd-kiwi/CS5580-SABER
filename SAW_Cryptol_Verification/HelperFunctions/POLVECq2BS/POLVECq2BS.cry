@@ -1,12 +1,13 @@
-
 module POLVECq2BS where
 
-type Word16 = [16]
-type Byte = [8]
-L = 3
-N = 256
-type PolyVec = [L][N]Word16
-type ByteArray = [L * N]Byte
+type Coeff = [13]
+type Byte  = [8]
 
-POLVECq2BS : PolyVec -> ByteArray
-POLVECq2BS vec = [ drop`8 (vec @ i @ j) | i <- [0 .. L - 1], j <- [0 .. N - 1] ]
+type SABER_K = 3
+type SABER_N = 256
+
+// Input: 3 x 256 vector with 13-bit coefficients
+// Output: packed 1248-byte stream
+POLVECq2BS : [SABER_K][SABER_N]Coeff -> [1248]Byte
+POLVECq2BS pols = groupBy`{8} (join [ zero # c | c <- join pols ])
+

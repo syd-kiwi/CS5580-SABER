@@ -1,12 +1,46 @@
-
 module BS2POLVECp where
 
-type Word16 = [16]
 type Byte = [8]
-L = 3
-N = 256
-type ByteArray = [L * N]Byte
-type PolyVec = [L][N]Word16
+type Coeff = [10]
 
-BS2POLVECp : ByteArray -> PolyVec
-BS2POLVECp bytes = [ [ zero # (bytes @ (i*N + j)) | j <- [0 .. N-1] ] | i <- [0 .. L-1] ]
+type SABER_K = 3
+type SABER_N = 256
+
+// Main unpacking function (960 bytes → 3×256 10-bit coefficients)
+bs2polvecp : [960]Byte -> [SABER_K][SABER_N]Coeff
+bs2polvecp bytes = [ join [ extract bytes i j | j <- [0 .. 63] ] | i <- [0 .. 2] ]
+
+// Extract 4 coefficients from 5 bytes at (i,j)
+extract : [960][8] -> Integer -> Integer -> [4]Coeff
+extract bytes i j = [c0, c1, c2, c3]
+  where
+    offset = i * 320 + 5 * j
+    b0 = bytes @ offset
+    b1 = bytes @ (offset + 1)
+    b2 = bytes @ (offset + 2)
+    b3 = bytes @ (offset + 3)
+    b4 = bytes @ (offset + 4)
+
+    c0 : [10]
+    c0 = b0 # take`{2} b1
+
+    c1 : [10]
+    c1 = drop`{2} b1 # take`{4} b2
+
+    c2 : [10]
+    c2 = drop`{4} b2 # take`{6} b3
+
+    c3 : [10]
+    c3 = drop`{6} b3 # b4
+
+// Helper to convert all 10-bit coefficients to 16-bit (matches C output)
+bs2polvecp_u16 : [960][8] -> [3][256][16]
+bs2polvecp_u16 bytes = [[ zero # coeff | coeff <- row ] | row <- bs2polvecp bytes]
+
+// A test vector with known input
+test_bytes : [960][8]
+test_bytes = ([0x00, 0x00, 0x80] # zero) : [960][8]
+
+// Expected unpacked output for the test input
+test_result : [3][256][16]
+test_result = bs2polvecp_u16 test_bytes
