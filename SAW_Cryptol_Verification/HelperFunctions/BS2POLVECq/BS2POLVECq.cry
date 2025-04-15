@@ -1,0 +1,26 @@
+module BS2POLVECq where
+
+type Byte = [8]
+type Coeff = [13]
+
+type SABER_K = 3
+type SABER_N = 256
+
+// Main unpacking function: 1040 bytes → 3 x 256 13-bit coefficients
+bs2polvecq : [1040]Byte -> [SABER_K][SABER_N]Coeff
+bs2polvecq bytes = [ join [ extract bytes i j | j <- [0 .. 63] ] | i <- [0 .. 2] ]
+
+extract : [1040][8] -> Integer -> Integer -> [4]Coeff
+extract bytes i j = [c0, c1, c2, c3]
+  where
+    offset = i * 832 + 13 * j / 8
+    b = [ bytes @ (offset + k) | k <- [0 .. 4] ]
+    bits = join b
+    c0 = take`{13} (drop`{0} bits)
+    c1 = take`{13} (drop`{13} bits)
+    c2 = take`{13} (drop`{26} bits)
+    c3 = take`{13} (drop`{39} bits) # zero  // Pad to 13 if partial
+
+// Pad each 13-bit coeff to 16 bits to match C output type
+bs2polvecq_u16 : [1040][8] -> [3][256][16]
+bs2polvecq_u16 bytes = [[ zero # coeff | coeff <- row ] | row <- bs2polvecq bytes]
